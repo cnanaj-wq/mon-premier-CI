@@ -13,7 +13,7 @@
     },
     "quality_profile": "showcase",
     "visual_preset": "signal-flow",
-    "output": "docs/architecture-ci.html",
+    "output": "docs/cicd.html",
     "repository": {
       "url": "https://github.com/cnanaj-wq/mon-premier-ci-cd.git",
       "revision": "d10af52cd20b37ae483c09c54c46041d056669a8"

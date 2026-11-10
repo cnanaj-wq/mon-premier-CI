@@ -3,7 +3,7 @@
 Un projet pour apprendre à **tester un changement (CI)** puis à **publier automatiquement un site (CD)** avec Python, Git et GitHub Actions.
 
 👉 [Visiter le site](https://cnanaj-wq.github.io/mon-premier-ci-cd/)
- · [Explorer le schéma interactif CI/CD](https://cnanaj-wq.github.io/mon-premier-ci-cd/architecture-ci.html)
+ · [Explorer le schéma interactif CI/CD](https://cnanaj-wq.github.io/mon-premier-ci-cd/cicd.html)
 
 ## Ce que fait le projet
 
@@ -48,7 +48,7 @@ Sur une machine Ubuntu 24.04, avec une limite de cinq minutes :
 1. Récupérer le code avec `actions/checkout`.
 2. Préparer Python 3.12.
 3. Exécuter `python test_students.py -v`.
-4. Vérifier que `docs/index.html` et `docs/architecture-ci.html` existent et ne sont pas vides.
+4. Vérifier que `docs/index.html` et `docs/cicd.html` existent et ne sont pas vides.
 
 ### CD : le job `deploy`
 
@@ -108,14 +108,14 @@ Résultat attendu : `Ran 4 tests`, puis `OK`. Cette commande teste le code Pytho
 | `test_students.py` | Quatre tests automatisés |
 | `.github/workflows/ci.yml` | Workflow CI/CD : contrôles puis publication |
 | `docs/index.html` | Accueil du site |
-| `docs/architecture-ci.html` | Schéma interactif CI/CD autonome |
+| `docs/cicd.html` | Schéma interactif CI/CD autonome |
 | `diagrams/ci-cd.workflow.json` | Source Archify modifiable du schéma |
 | `.gitignore` | Exclusion des fichiers locaux inutiles à l'historique |
 | `README.md` | Présentation et mode d'emploi |
 
 ## Schéma interactif CI/CD
 
-👉 [Ouvrir le schéma interactif](https://cnanaj-wq.github.io/mon-premier-ci-cd/architecture-ci.html)
+👉 [Ouvrir le schéma interactif](https://cnanaj-wq.github.io/mon-premier-ci-cd/cicd.html)
 
 - **Flux bleu-gris : CI**, de l'événement aux contrôles.
 - **Flux vert / turquoise : CD**, de l'autorisation de publier à la page livrée.
@@ -123,7 +123,7 @@ Résultat attendu : `Ran 4 tests`, puis `OK`. Cette commande teste le code Pytho
 - Cliquer sur un nœud permet d'explorer ses relations et ses sources.
 - Les vues guidées distinguent CI et CD. Signal Flow change la présentation ; Live anime les connexions.
 
-L'animation est pédagogique : elle ne lance aucun test et ne montre pas l'état réel de GitHub. Les commandes du lecteur sont partiellement en anglais. Les chemins historiques `ci.yml` et `architecture-ci.html` sont conservés pour maintenir les liens existants.
+L'animation est pédagogique : elle ne lance aucun test et ne montre pas l'état réel de GitHub. Les commandes du lecteur sont partiellement en anglais. Le schéma interactif est publié dans `docs/cicd.html`.
 
 ---
 
