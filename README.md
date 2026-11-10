@@ -80,3 +80,18 @@ Les résultats sont disponibles dans
 - Une CI réussie ne garantit pas l'absence de tous les bugs.
 - Aucun déploiement n'est configuré.
 - La protection de la branche `main` n'a pas encore été configurée.
+
+## Schéma interactif de la CI
+
+[Consulter le fichier du schéma interactif](docs/architecture-ci.html)
+
+Sur GitHub, ce lien ouvre le fichier HTML. Pour utiliser le diagramme,
+télécharge le fichier puis ouvre-le dans ton navigateur.
+
+Le diagramme permet d'explorer les étapes de la CI.
+Le mode Live anime le schéma : il ne lance pas les tests
+et ne représente pas l'état de GitHub en temps réel.
+
+Ce schéma représente la configuration au moment de sa création :
+tests déclenchés sur les pushs vers main.
+Il devra être mis à jour lorsque le workflow évoluera.
