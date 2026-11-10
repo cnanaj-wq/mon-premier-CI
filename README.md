@@ -2,8 +2,8 @@
 
 Un projet pour apprendre à **tester un changement (CI)** puis à **publier automatiquement un site (CD)** avec Python, Git et GitHub Actions.
 
-👉 [Visiter le site](https://cnanaj-wq.github.io/mon-premier-CI/)
- · [Explorer le schéma interactif CI/CD](https://cnanaj-wq.github.io/mon-premier-CI/architecture-ci.html)
+👉 [Visiter le site](https://cnanaj-wq.github.io/mon-premier-ci-cd/)
+ · [Explorer le schéma interactif CI/CD](https://cnanaj-wq.github.io/mon-premier-ci-cd/architecture-ci.html)
 
 ## Ce que fait le projet
 
@@ -39,7 +39,7 @@ La CI reste présente : la CD vient après elle. La fusion de la PR est humaine 
 
 ## Le workflow CI/CD
 
-La configuration se trouve dans `.github/workflows/ci.yml`, sous le nom **CI/CD Python** dans [l'onglet Actions](https://github.com/cnanaj-wq/mon-premier-CI/actions).
+La configuration se trouve dans `.github/workflows/ci.yml`, sous le nom **CI/CD Python** dans [l'onglet Actions](https://github.com/cnanaj-wq/mon-premier-ci-cd/actions).
 
 ### CI : le job `tests`
 
@@ -86,8 +86,8 @@ Si le job `deploy` échoue, consulter son journal : des tests verts ne suffisent
 Pour créer une nouvelle copie locale :
 
 ```powershell
-git clone https://github.com/cnanaj-wq/mon-premier-CI.git
-cd mon-premier-CI
+git clone https://github.com/cnanaj-wq/mon-premier-ci-cd.git
+cd mon-premier-ci-cd
 ```
 
 ## Lancer les tests localement
@@ -115,7 +115,7 @@ Résultat attendu : `Ran 4 tests`, puis `OK`. Cette commande teste le code Pytho
 
 ## Schéma interactif CI/CD
 
-👉 [Ouvrir le schéma interactif](https://cnanaj-wq.github.io/mon-premier-CI/architecture-ci.html)
+👉 [Ouvrir le schéma interactif](https://cnanaj-wq.github.io/mon-premier-ci-cd/architecture-ci.html)
 
 - **Flux bleu-gris : CI**, de l'événement aux contrôles.
 - **Flux vert / turquoise : CD**, de l'autorisation de publier à la page livrée.
