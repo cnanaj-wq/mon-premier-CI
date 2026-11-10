@@ -1,0 +1,354 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Ma chaîne CI/CD : des tests à la page livrée",
+    "locale": "fr",
+    "translations": {
+      "page.title": "{title}",
+      "diagram.description.workflow": "Parcours CI/CD : contrôles, conditions et publication GitHub Pages.",
+      "legend.title": "Légende",
+      "node.focus": "Explorer {label}",
+      "node.focus.detail": "Explorer {label}, {detail}"
+    },
+    "quality_profile": "showcase",
+    "visual_preset": "signal-flow",
+    "output": ".archify/workflow-cicd-20261110-1045/architecture-ci.html",
+    "repository": {
+      "url": "https://github.com/cnanaj-wq/mon-premier-CI.git",
+      "revision": "d10af52cd20b37ae483c09c54c46041d056669a8"
+    },
+    "legend": {
+      "entries": {
+        "external": {
+          "label": "Événement / fin de PR"
+        },
+        "backend": {
+          "label": "Exécution automatisée"
+        },
+        "security": {
+          "label": "Condition / arrêt"
+        },
+        "database": {
+          "label": "Artefact à publier"
+        },
+        "cloud": {
+          "label": "Publication Pages"
+        },
+        "frontend": {
+          "label": "Site consultable"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "ci",
+        "label": "1. CI : vérifier",
+        "focus": [
+          "event",
+          "tests",
+          "files",
+          "gate",
+          "failure",
+          "skip"
+        ],
+        "note": "Sur PR et push main : quatre tests puis vérification des HTML. Une PR ne publie jamais."
+      },
+      {
+        "id": "cd",
+        "label": "2. CD : publier",
+        "focus": [
+          "gate",
+          "prepare",
+          "artifact",
+          "publish",
+          "site"
+        ],
+        "note": "Après réussite sur main : préparation, artefact docs puis publication de la page."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "ci",
+      "label": "CI — intégration continue · flux bleu-gris"
+    },
+    {
+      "id": "cd",
+      "label": "CD — déploiement continu · flux vert / turquoise"
+    },
+    {
+      "id": "delivery",
+      "label": "Livraison — GitHub Pages"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "event",
+      "lane": "ci",
+      "col": 0,
+      "type": "external",
+      "label": "PR ou push",
+      "sublabel": "cible : main",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 3,
+          "end_line": 7
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "lane": "ci",
+      "col": 1,
+      "type": "backend",
+      "label": "Tests Python",
+      "sublabel": "checkout · Python 3.12",
+      "tag": "4 tests unittest",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 13,
+          "end_line": 27
+        }
+      ]
+    },
+    {
+      "id": "files",
+      "lane": "ci",
+      "col": 2,
+      "type": "backend",
+      "label": "Fichiers HTML",
+      "sublabel": "présents et non vides",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 29,
+          "end_line": 32
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "lane": "ci",
+      "col": 3,
+      "type": "security",
+      "label": "Publier ?",
+      "sublabel": "tests OK + push main",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 34,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "skip",
+      "lane": "ci",
+      "col": 4,
+      "type": "external",
+      "label": "PR : fin des tests",
+      "sublabel": "deploy ignoré",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 34,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "failure",
+      "lane": "cd",
+      "col": 1,
+      "type": "security",
+      "label": "Contrôle en échec",
+      "sublabel": "aucune publication",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 26,
+          "end_line": 36
+        }
+      ]
+    },
+    {
+      "id": "prepare",
+      "lane": "cd",
+      "col": 3,
+      "type": "backend",
+      "label": "Préparer Pages",
+      "sublabel": "checkout + configure",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 40,
+          "end_line": 58
+        }
+      ]
+    },
+    {
+      "id": "artifact",
+      "lane": "cd",
+      "col": 4,
+      "type": "database",
+      "label": "Paquet du site",
+      "sublabel": "docs → github-pages",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 60,
+          "end_line": 63
+        }
+      ]
+    },
+    {
+      "id": "publish",
+      "lane": "cd",
+      "col": 5,
+      "type": "cloud",
+      "label": "Déployer",
+      "sublabel": "actions/deploy-pages",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 65,
+          "end_line": 67
+        }
+      ]
+    },
+    {
+      "id": "site",
+      "lane": "delivery",
+      "col": 5,
+      "type": "frontend",
+      "label": "Page livrée",
+      "sublabel": "accueil + schéma",
+      "sources": [
+        {
+          "path": ".github/workflows/ci.yml",
+          "line": 45,
+          "end_line": 47
+        },
+        {
+          "path": "docs/index.html",
+          "line": 9,
+          "end_line": 12
+        }
+      ]
+    }
+  ],
+  "mainPath": [
+    "event",
+    "tests",
+    "files",
+    "gate",
+    "prepare",
+    "artifact",
+    "publish",
+    "site"
+  ],
+  "edges": [
+    {
+      "from": "event",
+      "to": "tests",
+      "variant": "default"
+    },
+    {
+      "from": "tests",
+      "to": "files",
+      "label": "OK",
+      "variant": "default"
+    },
+    {
+      "from": "files",
+      "to": "gate",
+      "label": "OK",
+      "variant": "default"
+    },
+    {
+      "from": "gate",
+      "to": "skip",
+      "label": "PR",
+      "variant": "default"
+    },
+    {
+      "from": "tests",
+      "to": "failure",
+      "label": "échec",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "from": "files",
+      "to": "failure",
+      "label": "échec HTML",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "from": "gate",
+      "to": "prepare",
+      "label": "push main",
+      "variant": "emphasis"
+    },
+    {
+      "from": "prepare",
+      "to": "artifact",
+      "variant": "emphasis"
+    },
+    {
+      "from": "artifact",
+      "to": "publish",
+      "variant": "emphasis"
+    },
+    {
+      "from": "publish",
+      "to": "site",
+      "label": "succès",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "slate",
+      "title": "CI · Vérifier avant de publier",
+      "items": [
+        "Le job tests récupère le code, prépare Python 3.12 et lance unittest.",
+        "Dupont accepté ; vide, espaces et None refusés.",
+        "Les deux HTML doivent exister et ne pas être vides. Leur rendu visuel n'est pas testé."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "CD · Publier seulement après les tests",
+      "items": [
+        "needs: tests attend la réussite ; if réserve deploy aux pushs sur main.",
+        "La fusion d'une PR déclenche un nouveau passage des tests sur main.",
+        "Seul docs est publié : le programme Python n'est pas un serveur en ligne.",
+        "Permissions du job : contents: read, pages: write, id-token: write."
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Échecs et protection",
+      "items": [
+        "Un contrôle rouge empêche le job deploy : la version publiée reste en place.",
+        "La règle main exige une PR et le contrôle tests (réglage GitHub vérifié pendant le parcours).",
+        "Un échec de publication se diagnostique dans le journal deploy."
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Lire le schéma interactif",
+      "items": [
+        "Bleu-gris : contrôles CI. Vert / turquoise : publication CD. Rose : arrêt sur erreur.",
+        "Cliquer sur un nœud révèle ses relations et ses sources.",
+        "Live anime le parcours : ce n'est pas un suivi de GitHub en temps réel.",
+        "Les boutons du lecteur restent partiellement en anglais."
+      ]
+    }
+  ]
+}
