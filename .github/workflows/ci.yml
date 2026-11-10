@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
-      branches: [main]
+    branches: [main]
+
 permissions:
   contents: read
 
@@ -24,3 +25,43 @@ jobs:
 
       - name: Executer les tests
         run: python test_students.py -v
+
+      - name: Verifier les fichiers du site
+        run: |
+          test -s docs/index.html
+          test -s docs/architecture-ci.html
+
+  deploy:
+    needs: tests
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v7
+
+      - name: Preparer GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Preparer les fichiers a publier
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Publier le site
+        id: deployment
+        uses: actions/deploy-pages@v4
