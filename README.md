@@ -83,15 +83,16 @@ Les résultats sont disponibles dans
 
 ## Schéma interactif de la CI
 
-[Consulter le fichier du schéma interactif](docs/architecture-ci.html)
+👉 [Ouvrir le schéma interactif en ligne](https://cnanaj-wq.github.io/mon-premier-CI/architecture-ci.html)
 
-Sur GitHub, ce lien ouvre le fichier HTML. Pour utiliser le diagramme,
-télécharge le fichier puis ouvre-le dans ton navigateur.
+Le schéma permet d'explorer le fonctionnement de la CI dans le navigateur,
+sans télécharger de fichier.
 
-Le diagramme permet d'explorer les étapes de la CI.
-Le mode Live anime le schéma : il ne lance pas les tests
-et ne représente pas l'état de GitHub en temps réel.
+- Signal Flow change la présentation du diagramme.
+- Live anime les connexions.
+- Cette animation ne lance pas les tests et ne montre pas leur état en temps réel.
 
-Ce schéma représente la configuration au moment de sa création :
-tests déclenchés sur les pushs vers main.
+Le diagramme représente la configuration au moment de sa création.
+Il reste à l'actualiser pour y intégrer le déclenchement sur les pull requests.
+
 Il devra être mis à jour lorsque le workflow évoluera.
