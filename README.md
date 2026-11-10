@@ -125,10 +125,12 @@ Résultat attendu : `Ran 4 tests`, puis `OK`. Cette commande teste le code Pytho
 
 L'animation est pédagogique : elle ne lance aucun test et ne montre pas l'état réel de GitHub. Les commandes du lecteur sont partiellement en anglais. Les chemins historiques `ci.yml` et `architecture-ci.html` sont conservés pour maintenir les liens existants.
 
-## Limites actuelles
+---
 
-- Les tests couvrent les quatre cas décrits ; ils ne prouvent pas l'absence de tous les bugs.
-- Le contrôle des HTML vérifie leur présence et leur taille, pas leur rendu ni tous leurs liens.
-- Seul le site statique est déployé. Aucun serveur Python ni base de données n'est publié.
-- Les règles de protection de `main` se configurent dans GitHub ; elles ne sont pas définies dans le YAML.
-- Le schéma doit être actualisé lorsque le workflow évolue. Ses liens de source pointent vers la version du workflow utilisée pour le construire.
+Ce projet est réalisé à des fins pédagogiques pour apprendre et mettre en pratique les tests automatisés, Git, GitHub Actions et la chaîne CI/CD, jusqu’au déploiement sur GitHub Pages.
+
+**produced by Cédric NANA**
+
+🌐 [cedricnana.fr](https://cedricnana.fr)
+
+[LinkedIn — Cédric NANA](https://www.linkedin.com/in/c%C3%A9dric-nana-68466a28/)
