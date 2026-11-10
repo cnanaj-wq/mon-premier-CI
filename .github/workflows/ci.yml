@@ -29,7 +29,7 @@ jobs:
       - name: Verifier les fichiers du site
         run: |
           test -s docs/index.html
-          test -s docs/architecture-ci.html
+          test -s docs/cicd.html
 
   deploy:
     needs: tests
